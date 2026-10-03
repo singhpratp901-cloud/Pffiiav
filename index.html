@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Business</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* LOGIN */
+.login-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#0866ff,#00a8e8);
+}
+
+.login-box{
+    width:100%;
+    max-width:410px;
+    background:#fff;
+    padding:28px;
+    border-radius:22px;
+    box-shadow:0 15px 50px rgba(0,0,0,.2);
+}
+
+.login-box h1{
+    text-align:center;
+    margin-bottom:8px;
+    color:#0866ff;
+}
+
+.login-box .subtitle{
+    text-align:center;
+    color:#777;
+    font-size:14px;
+    margin-bottom:22px;
+}
+
+.tabs{
+    display:flex;
+    gap:5px;
+    background:#f1f3f6;
+    padding:4px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.tabs button{
+    flex:1;
+    padding:11px;
+    border:0;
+    border-radius:8px;
+    background:transparent;
+    cursor:pointer;
+}
+
+.tabs button.active{
+    background:#fff;
+    color:#0866ff;
+    font-weight:bold;
+}
+
+/* HEADER */
+.header{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:linear-gradient(135deg,#0866ff,#00a8e8);
+    color:white;
+    padding:17px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:bold;
+}
+
+.logout{
+    border:0;
+    color:#fff;
+    background:rgba(255,255,255,.18);
+    padding:9px 13px;
+    border-radius:9px;
+    cursor:pointer;
+}
+
+/* MAIN */
+.container{
+    width:100%;
+    max-width:520px;
+    margin:auto;
+    padding:18px;
+}
+
+.card{
+    background:#fff;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:16px;
+    box-shadow:0 5px 22px rgba(0,0,0,.07);
+}
+
+.balance-card{
+    background:linear-gradient(135deg,#075fff,#00a6e8);
+    color:#fff;
+}
+
+.balance-card small{
+    opacity:.85;
+}
+
+.balance-card h1{
+    font-size:32px;
+    margin-top:8px;
+}
+
+/* MENU */
+.menu-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.menu-btn{
+    border:0;
+    background:#fff;
+    border-radius:16px;
+    padding:20px 10px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+    cursor:pointer;
+    font-size:15px;
+    color:#172033;
+}
+
+.menu-btn:hover{
+    background:#eef6ff;
+}
+
+.icon{
+    font-size:27px;
+    display:block;
+    margin-bottom:8px;
+}
+
+/* SECTIONS */
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+h2{
+    margin-bottom:18px;
+}
+
+h3{
+    margin-bottom:12px;
+}
+
+/* FORM */
+label{
+    display:block;
+    margin:11px 0 6px;
+    font-size:14px;
+    font-weight:600;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:1px solid #dce1e8;
+    border-radius:10px;
+    outline:none;
+    font-size:15px;
+}
+
+input:focus{
+    border-color:#0866ff;
+}
+
+.btn{
+    width:100%;
+    border:0;
+    background:#0866ff;
+    color:#fff;
+    padding:14px;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:9px;
+}
+
+.btn:hover{
+    background:#0052d4;
+}
+
+.btn-light{
+    background:#eaf2ff;
+    color:#0866ff;
+}
+
+.btn-light:hover{
+    background:#dceaff;
+}
+
+/* UPI */
+.upi-box{
+    background:#f5f8ff;
+    border:1px solid #dce8ff;
+    border-radius:14px;
+    padding:17px;
+    margin:15px 0;
+}
+
+.upi-label{
+    color:#777;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+.upi-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.upi-id{
+    flex:1;
+    font-size:18px;
+    font-weight:bold;
+    color:#075fff;
+    word-break:break-all;
+}
+
+.copy-btn{
+    border:0;
+    background:#075fff;
+    color:#fff;
+    padding:9px 12px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.note{
+    background:#fff8df;
+    color:#725700;
+    padding:13px;
+    border-radius:10px;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+/* HISTORY */
+.transaction{
+    padding:14px 0;
+    border-bottom:1px solid #eee;
+    line-height:1.7;
+}
+
+.transaction:last-child{
+    border-bottom:0;
+}
+
+.pending{
+    color:#d38b00;
+    font-weight:bold;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    color:#8a919c;
+    font-size:12px;
+    padding:25px 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOGIN PAGE ================= -->
+
+<div id="loginPage" class="login-page">
+
+    <div class="login-box">
+
+        <h1>My Business</h1>
+
+        <p class="subtitle">
+            Secure account access
+        </p>
+
+        <div class="tabs">
+
+            <button
+                id="loginTab"
+                class="active"
+                onclick="showAuth('login')">
+                Login
+            </button>
+
+            <button
+                id="registerTab"
+                onclick="showAuth('register')">
+                Register
+            </button>
+
+        </div>
+
+
+        <!-- LOGIN FORM -->
+
+        <div id="loginForm">
+
+            <label>Mobile / Email</label>
+
+            <input
+                id="loginUser"
+                type="text"
+                placeholder="Enter mobile or email"
+            >
+
+            <label>Password</label>
+
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="Enter password"
+            >
+
+            <button
+                class="btn"
+                onclick="login()">
+                Login
+            </button>
+
+        </div>
+
+
+        <!-- REGISTER FORM -->
+
+        <div id="registerForm" class="hidden">
+
+            <label>Full Name</label>
+
+            <input
+                id="registerName"
+                type="text"
+                placeholder="Enter your name"
+            >
+
+            <label>Mobile</label>
+
+            <input
+                id="registerMobile"
+                type="tel"
+                placeholder="Enter mobile number"
+            >
+
+            <label>Email</label>
+
+            <input
+                id="registerEmail"
+                type="email"
+                placeholder="Enter email"
+            >
+
+            <label>Password</label>
+
+            <input
+                id="registerPassword"
+                type="password"
+                placeholder="Create password"
+            >
+
+            <button
+                class="btn"
+                onclick="register()">
+                Create Account
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MAIN APP ================= -->
+
+<div id="app" class="hidden">
+
+    <header class="header">
+
+        <div class="logo">
+            My Business
+        </div>
+
+        <button
+            class="logout"
+            onclick="logout()">
+            Logout
+        </button>
+
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- ================= HOME ================= -->
+
+        <div
+            id="home"
+            class="section active">
+
+            <div class="card balance-card">
+
+                <small>
+                    Available Balance
+                </small>
+
+                <h1 id="balance">
+                    ₹0.00
+                </h1>
+
+            </div>
+
+
+            <div class="menu-grid">
+
+                <button
+                    class="menu-btn"
+                    onclick="openSection('deposit')">
+
+                    <span class="icon">💳</span>
+
+                    Deposit
+
+                </button>
+
+
+                <button
+                    class="menu-btn"
+                    onclick="openSection('withdraw')">
+
+                    <span class="icon">💰</span>
+
+                    Withdraw
+
+                </button>
+
+
+                <button
+                    class="menu-btn"
+                    onclick="openSection('history')">
+
+                    <span class="icon">📋</span>
+
+                    History
+
+                </button>
+
+
+                <button
+                    class="menu-btn"
+                    onclick="openSection('profile')">
+
+                    <span class="icon">👤</span>
+
+                    Profile
+
+                </button>
+
+            </div>
+
+
+            <div class="card" style="margin-top:16px">
+
+                <h3>
+                    Welcome
+                </h3>
+
+                <p
+                    id="welcome"
+                    style="color:#687080;line-height:1.5">
+                    Welcome to your account.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= DEPOSIT ================= -->
+
+        <div
+            id="deposit"
+            class="section">
+
+            <div class="card">
+
+                <h2>
+                    Deposit
+                </h2>
+
+
+                <div class="note">
+
+                    Payment karne se pehle
+                    amount aur UPI ID verify karein.
+                    Payment sirf authorized account par karein.
+
+                </div>
+
+
+                <label>
+                    Deposit Amount
+                </label>
+
+                <input
+                    id="depositAmount"
+                    type="number"
+                    min="1"
+                    placeholder="Enter amount"
+                >
+
+
+                <!-- UPI ID -->
+
+                <div class="upi-box">
+
+                    <div class="upi-label">
+                        UPI ID
+                    </div>
+
+                    <div class="upi-row">
+
+                        <div
+                            id="upiId"
+                            class="upi-id">
+                            ashish-y54@ptyes
+                        </div>
+
+                        <button
+                            class="copy-btn"
+                            onclick="copyUPI()">
+                            Copy
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <p
+                    style="
+                    text-align:center;
+                    color:#687080;
+                    font-size:14px;
+                    line-height:1.5;
+                    margin-bottom:15px;
+                    ">
+
+                    Apne UPI app mein upar diye
+                    UPI ID par payment karein.
+
+                </p>
+
+
+                <label>
+                    UTR / Transaction ID
+                </label>
+
+                <input
+                    id="utr"
+                    type="text"
+                    placeholder="Enter UTR / Transaction ID"
+                >
+
+
+                <button
+                    class="btn"
+                    onclick="submitDeposit()">
+
+                    Submit Deposit
+
+                </button>
+
+
+                <button
+                    class="btn btn-light"
+                    onclick="openSection('home')">
+
+                    Back
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= WITHDRAW ================= -->
+
+        <div
+            id="withdraw"
+            class="section">
+
+            <div class="card">
+
+                <h2>
+                    Withdraw
+                </h2>
+
+                <div class="note">
+
+                    Withdrawal request submit hone ke baad
+                    verification ke according process hogi.
+
+                </div>
+
+
+                <label>
+                    Amount
+                </label>
+
+                <input
+                    id="withdrawAmount"
+                    type="number"
+                    min="1"
+                    placeholder="Enter withdrawal amount"
+                >
+
+
+                <label>
+                    UPI ID
+                </label>
+
+                <input
+                    id="withdrawUPI"
+                    type="text"
+                    placeholder="example@upi"
+                >
+
+
+                <button
+                    class="btn"
+                    onclick="submitWithdraw()">
+
+                    Submit Withdrawal
+
+                </button>
+
+
+                <button
+                    class="btn btn-light"
+                    onclick="openSection('home')">
+
+                    Back
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= HISTORY ================= -->
+
+        <div
+            id="history"
+            class="section">
+
+            <div class="card">
+
+                <h2>
+                    Transaction History
+                </h2>
+
+                <div id="historyList"></div>
+
+
+                <button
+                    class="btn btn-light"
+                    onclick="openSection('home')">
+
+                    Back
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PROFILE ================= -->
+
+        <div
+            id="profile"
+            class="section">
+
+            <div class="card">
+
+                <h2>
+                    Profile
+                </h2>
+
+
+                <label>
+                    Name
+                </label>
+
+                <input
+                    id="profileName"
+                    type="text"
+                >
+
+
+                <label>
+                    Mobile
+                </label>
+
+                <input
+                    id="profileMobile"
+                    type="tel"
+                >
+
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    id="profileEmail"
+                    type="email"
+                >
+
+
+                <button
+                    class="btn"
+                    onclick="saveProfile()">
+
+                    Save Profile
+
+                </button>
+
+
+                <button
+                    class="btn btn-light"
+                    onclick="openSection('home')">
+
+                    Back
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        © 2026 My Business. All rights reserved.
+    </footer>
+
+</div>
+
+
+<script>
+
+/* =========================
+   STORAGE
+========================= */
+
+function getUser(){
+
+    return JSON.parse(
+        localStorage.getItem("businessUser") || "null"
+    );
+}
+
+
+function saveUser(user){
+
+    localStorage.setItem(
+        "businessUser",
+        JSON.stringify(user)
+    );
+}
+
+
+function getTransactions(){
+
+    return JSON.parse(
+        localStorage.getItem("transactions") || "[]"
+    );
+}
+
+
+function saveTransactions(data){
+
+    localStorage.setItem(
+        "transactions",
+        JSON.stringify(data)
+    );
+}
+
+
+/* =========================
+   AUTH TABS
+========================= */
+
+function showAuth(type){
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const registerForm =
+        document.getElementById("registerForm");
+
+    const loginTab =
+        document.getElementById("loginTab");
+
+    const registerTab =
+        document.getElementById("registerTab");
+
+
+    if(type === "login"){
+
+        loginForm.classList.remove("hidden");
+        registerForm.classList.add("hidden");
+
+        loginTab.classList.add("active");
+        registerTab.classList.remove("active");
+
+    }else{
+
+        loginForm.classList.add("hidden");
+        registerForm.classList.remove("hidden");
+
+        loginTab.classList.remove("active");
+        registerTab.classList.add("active");
+
+    }
+}
+
+
+/* =========================
+   REGISTER
+========================= */
+
+function register(){
+
+    const name =
+        document.getElementById("registerName")
+        .value.trim();
+
+    const mobile =
+        document.getElementById("registerMobile")
+        .value.trim();
+
+    const email =
+        document.getElementById("registerEmail")
+        .value.trim();
+
+    const password =
+        document.getElementById("registerPassword")
+        .value;
+
+
+    if(!name || !mobile || !email || !password){
+
+        alert("Please fill all fields.");
+        return;
+    }
+
+
+    const user = {
+
+        name:name,
+        mobile:mobile,
+        email:email,
+        password:password,
+        balance:0
+
+    };
+
+
+    saveUser(user);
+
+
+    alert(
+        "Account created successfully."
+    );
+
+
+    showAuth("login");
+
+
+    document.getElementById("loginUser")
+        .value = mobile;
+
+    document.getElementById("loginPassword")
+        .value = password;
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function login(){
+
+    const username =
+        document.getElementById("loginUser")
+        .value.trim();
+
+    const password =
+        document.getElementById("loginPassword")
+        .value;
+
+
+    const user = getUser();
+
+
+    if(!user){
+
+        alert(
+            "Account not found. Please register first."
+        );
+
+        return;
+    }
+
+
+    if(
+        (username === user.mobile ||
+         username === user.email) &&
+        password === user.password
+    ){
+
+        localStorage.setItem(
+            "loggedIn",
+            "true"
+        );
+
+        showApp();
+
+    }else{
+
+        alert(
+            "Invalid login details."
+        );
+    }
+}
+
+
+/* =========================
+   SHOW APP
+========================= */
+
+function showApp(){
+
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("app")
+        .classList.remove("hidden");
+
+
+    loadProfile();
+    updateBalance();
+    loadHistory();
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout(){
+
+    localStorage.removeItem(
+        "loggedIn"
+    );
+
+
+    document
+        .getElementById("app")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("loginPage")
+        .classList.remove("hidden");
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function openSection(id){
+
+    document
+        .querySelectorAll(".section")
+        .forEach(function(section){
+
+            section.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+
+    if(id === "history"){
+        loadHistory();
+    }
+
+
+    if(id === "home"){
+        updateBalance();
+    }
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* =========================
+   COPY UPI
+========================= */
+
+function copyUPI(){
+
+    const upi =
+        "ashish-y54@ptyes";
+
+
+    navigator.clipboard
+        .writeText(upi)
+        .then(function(){
+
+            alert(
+                "UPI ID copied: " + upi
+            );
+
+        })
+        .catch(function(){
+
+            alert(
+                "UPI ID: " + upi
+            );
+
+        });
+}
+
+
+/* =========================
+   DEPOSIT
+========================= */
+
+function submitDeposit(){
+
+    const amount =
+        Number(
+            document.getElementById(
+                "depositAmount"
+            ).value
+        );
+
+
+    const utr =
+        document.getElementById(
+            "utr"
+        ).value.trim();
+
+
+    if(!amount || amount <= 0){
+
+        alert(
+            "Please enter a valid amount."
+        );
+
+        return;
+    }
+
+
+    if(!utr){
+
+        alert(
+            "Please enter UTR / Transaction ID."
+        );
+
+        return;
+    }
+
+
+    const transactions =
+        getTransactions();
+
+
+    transactions.unshift({
+
+        type:"Deposit",
+
+        amount:amount,
+
+        utr:utr,
+
+        status:"Pending",
+
+        date:new Date()
+            .toLocaleString()
+
+    });
+
+
+    saveTransactions(
+        transactions
+    );
+
+
+    document.getElementById(
+        "depositAmount"
+    ).value = "";
+
+
+    document.getElementById(
+        "utr"
+    ).value = "";
+
+
+    alert(
+        "Deposit request submitted successfully. " +
+        "Payment verification is pending."
+    );
+
+
+    loadHistory();
+}
+
+
+/* =========================
+   WITHDRAW
+========================= */
+
+function submitWithdraw(){
+
+    const amount =
+        Number(
+            document.getElementById(
+                "withdrawAmount"
+            ).value
+        );
+
+
+    const upi =
+        document.getElementById(
+          
